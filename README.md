@@ -1,5 +1,5 @@
 # Imp
-Defold native extension to perform image processing on an image [by doing a convolution between a kernel and the image](https://www.wikiwand.com/en/Kernel_(image_processing).
+Defold native extension to perform image processing on an image [by doing a convolution between a kernel and the image](https%3A%2F%2Fwww.wikiwand.com%2Fen%2FKernel_%28image_processing%29).
 
 ## Installation
 You can use Imp in your own project by adding this project as a [Defold library dependency](https://www.defold.com/manuals/libraries/). Open your game.project file and in the dependencies field under project add:
