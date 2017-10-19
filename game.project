@@ -1,6 +1,6 @@
 [project]
 title = Imp
-dependencies = https://github.com/britzl/defold-png/archive/1.1.zip
+dependencies = https://github.com/britzl/defold-png/archive/1.1.zip, https://github.com/defold/extension-camera/archive/master.zip
 custom_resources = 
 
 [bootstrap]
@@ -11,8 +11,8 @@ render = /builtins/render/default.renderc
 game_binding = /input/game.input_bindingc
 
 [display]
-width = 640
-height = 1136
+width = 1136
+height = 640
 
 [script]
 shared_state = 1

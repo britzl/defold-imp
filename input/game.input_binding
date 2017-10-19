@@ -1,26 +1,26 @@
 key_trigger {
   input: KEY_1
-  action: "filter1"
+  action: "kernel1"
 }
 key_trigger {
   input: KEY_2
-  action: "filter2"
+  action: "kernel2"
 }
 key_trigger {
   input: KEY_3
-  action: "filter3"
+  action: "kernel3"
 }
 key_trigger {
   input: KEY_4
-  action: "filter4"
+  action: "kernel4"
 }
 key_trigger {
   input: KEY_5
-  action: "filter5"
+  action: "kernel5"
 }
 key_trigger {
   input: KEY_0
-  action: "nofilter"
+  action: "nokernel"
 }
 mouse_trigger {
   input: MOUSE_BUTTON_1
