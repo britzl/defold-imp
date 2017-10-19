@@ -102,7 +102,7 @@ static bool compare_buffers(dmBuffer::HBuffer a, dmBuffer::HBuffer b) {
     return (a_data.count == b_data.count);
 }
 
-static int Apply(lua_State* L) {
+static int Convolution(lua_State* L) {
     int top = lua_gettop(L);
 
     dmBuffer::HBuffer src_buffer = check_and_validate_buffer(L, 1);
@@ -174,7 +174,7 @@ static int Apply(lua_State* L) {
 
 // Functions exposed to Lua
 static const luaL_reg Module_methods[] = {
-    {"apply", Apply},
+    {"convolution", Convolution},
     {0, 0}
 };
 

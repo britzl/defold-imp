@@ -10,8 +10,8 @@ Or point to the ZIP file of a [specific release](https://github.com/britzl/defol
 
 ## Usage
 
-#### imp.apply(source, destination, width, height, kernel)
-Apply a kernel to the pixels of the source buffer and write the resulting values to the destination buffer.
+#### imp.convolution(source, destination, width, height, kernel)
+Perform a convolution between the kernel and the pixels of the source buffer and write the resulting values to the destination buffer. Edge handling is done by extending border pixels.
 
 **PARAMETERS**
 * ```source``` (buffer) - Source buffer to read pixels from

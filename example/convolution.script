@@ -121,7 +121,7 @@ end
 function update(self, dt)
 	if self.src_buffer then
 		if self.kernel then
-			imp.apply(self.src_buffer, self.dst_buffer, self.src_header.width, self.src_header.height, self.kernel)
+			imp.convolution(self.src_buffer, self.dst_buffer, self.src_header.width, self.src_header.height, self.kernel)
 			update_texture(self.dst_buffer, self.src_header)
 		else
 			update_texture(self.src_buffer, self.src_header)
