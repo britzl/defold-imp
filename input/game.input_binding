@@ -1,0 +1,28 @@
+key_trigger {
+  input: KEY_1
+  action: "filter1"
+}
+key_trigger {
+  input: KEY_2
+  action: "filter2"
+}
+key_trigger {
+  input: KEY_3
+  action: "filter3"
+}
+key_trigger {
+  input: KEY_4
+  action: "filter4"
+}
+key_trigger {
+  input: KEY_5
+  action: "filter5"
+}
+key_trigger {
+  input: KEY_0
+  action: "nofilter"
+}
+mouse_trigger {
+  input: MOUSE_BUTTON_1
+  action: "touch"
+}
