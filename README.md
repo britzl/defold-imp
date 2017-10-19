@@ -19,4 +19,4 @@ Apply a kernel to the pixels of the source buffer and write the resulting values
 * ```destination``` (buffer) - Destination buffer to write pixels to
 * ```width``` (number) - Width of source and destination buffers
 * ```height``` (number) - Height of source and destination buffers
-* ```kernel``` (table) - Table with 9 numbers describing the kernel. First value is top left, last vallue is bottom right.
+* ```kernel``` (table) - Table with 9 numbers describing the kernel. First value is top left, last value is bottom right.
