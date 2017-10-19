@@ -11,7 +11,6 @@ Or point to the ZIP file of a [specific release](https://github.com/britzl/defol
 ## Usage
 
 #### imp.apply(source, destination, width, height, kernel)
-
 Apply a kernel to the pixels of the source buffer and write the resulting values to the destination buffer.
 
 **PARAMETERS**
@@ -20,3 +19,8 @@ Apply a kernel to the pixels of the source buffer and write the resulting values
 * ```width``` (number) - Width of source and destination buffers
 * ```height``` (number) - Height of source and destination buffers
 * ```kernel``` (table) - Table with 9 numbers describing the kernel. First value is top left, last value is bottom right.
+
+## Example
+There's an example in the examples folder. The example will use the camera if running on iOS or OSX and on other systems it will grab an image from Imgur.
+
+[Try the HTML5 version (with Imgur image)](https://britzl.github.io/Imp/).
