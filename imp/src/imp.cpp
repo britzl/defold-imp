@@ -7,15 +7,12 @@
 #include <dmsdk/sdk.h>
 
 
+static dmhash_t BUFFER_NAME = dmHashString64("rgb");
+
 struct Kernel {
     double values[9];
 };
 
-struct BufferData {
-    dmhash_t name;
-    dmBuffer::ValueType type;
-    uint32_t count;
-};
 
 static void printStack(lua_State* L) {
     int n = lua_gettop(L);
@@ -74,13 +71,19 @@ static Kernel check_kernel(lua_State* L, int index) {
     return kernel;
 }
 
-static BufferData get_buffer_data(dmBuffer::HBuffer buffer) {
-    BufferData data;
-    dmBuffer::GetStreamName(buffer, 0, &data.name);
-    dmBuffer::GetStreamType(buffer, data.name, &data.type, &data.count);
-    return data;
+static dmBuffer::ValueType get_buffer_type(dmBuffer::HBuffer buffer) {
+    dmBuffer::ValueType type;
+    uint32_t count;
+    dmBuffer::GetStreamType(buffer, BUFFER_NAME, &type, &count);
+    return type;
 }
 
+static uint32_t get_buffer_count(dmBuffer::HBuffer buffer) {
+    dmBuffer::ValueType type;
+    uint32_t count;
+    dmBuffer::GetStreamType(buffer, BUFFER_NAME, &type, &count);
+    return count;
+}
 
 static dmBuffer::HBuffer check_and_validate_buffer(lua_State* L, int index) {
     dmScript::LuaHBuffer *lua_buffer = dmScript::CheckBuffer(L, index);
@@ -89,17 +92,15 @@ static dmBuffer::HBuffer check_and_validate_buffer(lua_State* L, int index) {
     if (!dmBuffer::IsBufferValid(buffer)) {
         luaL_error(L, "Buffer is invalid");
     }
-    BufferData data = get_buffer_data(buffer);
-    if (data.type != dmBuffer::VALUE_TYPE_UINT8) {
+
+    if (get_buffer_type(buffer) != dmBuffer::VALUE_TYPE_UINT8) {
         luaL_error(L, "Buffer is not of type UINT8");
     }
     return buffer;
 }
 
 static bool compare_buffers(dmBuffer::HBuffer a, dmBuffer::HBuffer b) {
-    BufferData a_data = get_buffer_data(a);
-    BufferData b_data = get_buffer_data(b);
-    return (a_data.count == b_data.count);
+    return get_buffer_count(a) == get_buffer_count(b);
 }
 
 static int Convolution(lua_State* L) {
@@ -117,24 +118,8 @@ static int Convolution(lua_State* L) {
 
     dmBuffer::Result r;
 
-    // get stream name, type and count
-    dmhash_t stream_name = 0;
-    r = dmBuffer::GetStreamName(src_buffer, 0, &stream_name);
-    if (r != dmBuffer::RESULT_OK) {
-        dmLogError("Unable to get stream name");
-        return 0;
-    }
-    dmBuffer::ValueType stream_type;
-    uint32_t stream_type_count = 0;
-    r = dmBuffer::GetStreamType(src_buffer, stream_name, &stream_type, &stream_type_count);
-    if (r != dmBuffer::RESULT_OK) {
-        dmLogError("Unable to get stream type and count");
-        return 0;
-    }
-    if (stream_type != dmBuffer::VALUE_TYPE_UINT8) {
-        dmLogError("Expected buffer to be of type dmBuffer::VALUE_TYPE_UINT8");
-        return 0;
-    }
+    // get stream count
+    uint32_t stream_type_count = get_buffer_count(src_buffer);
 
     // get source buffer bytes
     uint8_t* src_bytes = 0;

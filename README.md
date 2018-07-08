@@ -14,8 +14,8 @@ Or point to the ZIP file of a [specific release](https://github.com/britzl/defol
 Perform a convolution between the kernel and the pixels of the source buffer and write the resulting values to the destination buffer. Edge handling is done by extending border pixels.
 
 **PARAMETERS**
-* ```source``` (buffer) - Source buffer to read pixels from
-* ```destination``` (buffer) - Destination buffer to write pixels to
+* ```source``` (buffer) - Source buffer to read pixels from (must contain a stream named "rgb" of type uint8)
+* ```destination``` (buffer) - Destination buffer to write pixels to (must contain a stream named "rgb" of type uint8)
 * ```width``` (number) - Width of source and destination buffers
 * ```height``` (number) - Height of source and destination buffers
 * ```kernel``` (table) - Table with 9 numbers describing the kernel. First value is top left, last value is bottom right.
